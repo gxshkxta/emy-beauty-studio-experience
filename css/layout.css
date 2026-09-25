@@ -169,3 +169,133 @@
     color: #ffd700;
     transform: translateY(-2px);
 }
+
+/* =========================================
+   МОБИЛНА ВЕРСИЯ (RESPONSIVE DESIGN)
+========================================= */
+@media (max-width: 1024px) {
+    /* Скриваме големите менюта на екрани под 1024px */
+    .header-nav, 
+    .header-actions {
+        display: none;
+    }
+    
+    /* Адаптираме стъкления панел за телефон */
+    .emy-header {
+        width: 90%;
+        padding: 12px 20px;
+        top: 15px;
+    }
+
+    /* Намаляваме леко шрифта на логото */
+    .logo-title {
+        font-size: 1.2rem;
+    }
+    
+    .logo-sub {
+        font-size: 0.5rem;
+    }
+    
+    /* Хамбургер бутонът минава вдясно */
+    .header-logo {
+        width: 100%;
+        justify-content: space-between;
+        flex-direction: row-reverse; /* Слага бутона вдясно, а логото вляво */
+    }
+}
+
+/* =========================================
+   МОБИЛНО МЕНЮ (СТЪКЛЕН OVERLAY)
+========================================= */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2000; /* Най-отгоре, над всичко друго */
+    
+    /* Супер силен кристален блър, за да се чете текстът */
+    background: rgba(20, 5, 25, 0.4); 
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    
+    /* Скрито по подразбиране с плавна анимация */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-30px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Класът, който JavaScript добавя, за да покаже менюто */
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Бутонът X за затваряне */
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #ffd700;
+    transform: rotate(90deg);
+}
+
+/* Линковете вътре в мобилното меню */
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.mobile-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav a:hover, .mobile-nav a.my-emy-mobile {
+    color: #ffd700;
+}
+
+/* Социалните иконки най-отдолу */
+.mobile-socials {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.mobile-socials a {
+    color: #fff;
+    font-size: 1.8rem;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.mobile-socials a:hover {
+    opacity: 1;
+    color: #ffd700;
+    transform: translateY(-5px);
+}

@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMY | Phase 2 Layout</title>
     
-    <!-- FontAwesome за иконките в менюто и социалните мрежи -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Зареждане на двигателите -->
     <link rel="stylesheet" href="css/atmosphere.css">
     <link rel="stylesheet" href="css/glass.css">
-    <link rel="stylesheet" href="css/layout.css"> <!-- НОВИЯТ ФАЙЛ ЗА ФАЗА 2 -->
-    
+    <link rel="stylesheet" href="css/layout.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -21,10 +17,9 @@
 
     <!-- LAYER 2: ГЛОБАЛНА НАВИГАЦИЯ (HEADER) -->
     <header class="emy-header">
-        <!-- Ляво: Лого и бранд -->
-        <!-- Ляво: Лого и бранд -->
         <div class="header-logo">
-            <div class="hamburger-menu">
+            <!-- Добавено е ID на бутона, за да го намерим с JavaScript -->
+            <div class="hamburger-menu" id="hamburger-btn">
                 <i class="fas fa-bars"></i>
             </div>
             <div class="logo-text">
@@ -33,7 +28,6 @@
             </div>
         </div>
 
-        <!-- Център: Основно меню -->
         <nav class="header-nav">
             <a href="#"><i class="fas fa-leaf"></i> Studio <i class="fas fa-chevron-down arrow"></i></a>
             <a href="#"><i class="fas fa-shopping-bag"></i> EMY Care <i class="fas fa-chevron-down arrow"></i></a>
@@ -41,7 +35,6 @@
             <a href="#"><i class="far fa-calendar-alt"></i> Calendar</a>
         </nav>
 
-        <!-- Дясно: Потребител и Социални мрежи -->
         <div class="header-actions">
             <a href="#" class="my-emy"><i class="far fa-user"></i> My EMY <i class="fas fa-chevron-down arrow"></i></a>
             <div class="separator"></div>
@@ -55,13 +48,50 @@
         </div>
     </header>
 
+    <!-- НОВО: МОБИЛНО МЕНЮ (СТЪКЛЕН ЕКРАН) -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <div class="close-btn" id="close-btn"><i class="fas fa-times"></i></div>
+        
+        <nav class="mobile-nav">
+            <a href="#"><i class="fas fa-leaf"></i> Studio</a>
+            <a href="#"><i class="fas fa-shopping-bag"></i> EMY Care</a>
+            <a href="#"><i class="fas fa-graduation-cap"></i> EMY Academy</a>
+            <a href="#"><i class="far fa-calendar-alt"></i> Calendar</a>
+            <a href="#" class="my-emy-mobile"><i class="far fa-user"></i> My EMY</a>
+        </nav>
+
+        <div class="mobile-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </div>
+
     <!-- LAYER 3: ОСНОВНО СЪДЪРЖАНИЕ -->
     <main class="styleguide-container">
-        <!-- Оставяме тестовия панел като маркер за центъра на екрана -->
         <div class="emy-glass">
             <h1>EMY</h1>
             <p>Phase 2: Global Layout Active</p>
         </div>
     </main>
+
+    <!-- СКРИПТ ЗА ОТВАРЯНЕ И ЗАТВАРЯНЕ НА МЕНЮТО -->
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // При клик на хамбургера добавяме клас 'active'
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        // При клик на хикса премахваме клас 'active'
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+    </script>
 </body>
 </html>
