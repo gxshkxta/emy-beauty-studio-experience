@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/home.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
     <!-- LAYER 1: ФОНЪТ -->
@@ -75,7 +76,7 @@
         <!-- ЛЯВА ЧАСТ: Визия с изображение и текст -->
         <div class="hero-left">
             <div class="hero-image-container">
-                <img src="emi-fon.png" alt="EMY Studio Experience" class="hero-model-img">
+                <img src="emy-fon.png" alt="EMY Studio Experience" class="hero-model-img">
                 
                 <div class="hero-quote">
                     <p class="cursive-text">Красотата</p>
@@ -213,6 +214,7 @@
         </div>
     </main>
 
+    <!-- СКРИПТ ЗА МОБИЛНОТО МЕНЮ -->
     <script>
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const closeBtn = document.getElementById('close-btn');
@@ -226,5 +228,8 @@
             mobileMenu.classList.remove('active');
         });
     </script>
+
+    <!-- СКРИПТ ЗА ИНТЕРАКТИВЕН КАЛЕНДАР И BOOKING FLOW -->
+    <script src="js/booking.js"></script>
 </body>
 </html>
