@@ -1,0 +1,171 @@
+/* =========================================
+   PHASE 2: GLOBAL LAYOUT & NAVIGATION
+========================================= */
+
+/* Самият стъклен панел на хедъра */
+/* Самият стъклен панел на хедъра */
+.emy-header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96%;
+    max-width: 1600px;
+    z-index: 1000;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    
+    /* Максимална прозрачност - сваляме белия фон до 1% */
+    background: rgba(255, 255, 255, 0.01);
+    
+    /* По-лек блър, за да не създава млечен/матиран ефект */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    
+    /* Изтъняваме отблясъците по ръбовете, за да е още по-фино */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 40px;
+    
+    /* Олекотена сянка */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+    
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+/* 1. ЛЯВА ЧАСТ (ЛОГО) */
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+/* Новият дизайн за хамбургер бутона */
+.hamburger-menu {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffd700; /* Златен акцент при ховър */
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    line-height: 1;
+}
+
+.logo-sub {
+    font-size: 0.6rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 2px;
+}
+
+/* 2. ЦЕНТРАЛНА ЧАСТ (МЕНЮ) */
+.header-nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.header-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.header-nav a:hover {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.header-nav a i:not(.arrow) {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.header-nav a .arrow {
+    font-size: 0.6rem;
+    opacity: 0.5;
+    margin-left: 2px;
+}
+
+/* 3. ДЯСНА ЧАСТ (ПОТРЕБИТЕЛ И СОЦИАЛНИ) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.my-emy {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.my-emy:hover {
+    color: #ffd700;
+}
+
+.separator {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.socials {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.socials a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.socials a:hover {
+    opacity: 1;
+    color: #ffd700;
+    transform: translateY(-2px);
+}
