@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMY | Beauty Studio Experience</title>
     
-    <!-- FontAwesome за иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Всички CSS файлове -->
     <link rel="stylesheet" href="css/atmosphere.css">
     <link rel="stylesheet" href="css/glass.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -52,10 +50,9 @@
         </div>
     </header>
 
-    <!-- МОБИЛНО МЕНЮ (СТЪКЛЕН ЕКРАН) -->
+    <!-- МОБИЛНО МЕНЮ -->
     <div class="mobile-menu-overlay" id="mobile-menu">
         <div class="close-btn" id="close-btn"><i class="fas fa-times"></i></div>
-        
         <nav class="mobile-nav">
             <a href="#"><i class="fas fa-leaf"></i> Studio</a>
             <a href="#"><i class="fas fa-shopping-bag"></i> EMY Care</a>
@@ -63,7 +60,6 @@
             <a href="#"><i class="far fa-calendar-alt"></i> Calendar</a>
             <a href="#" class="my-emy-mobile"><i class="far fa-user"></i> My EMY</a>
         </nav>
-
         <div class="mobile-socials">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -73,31 +69,36 @@
         </div>
     </div>
 
-    <!-- LAYER 3: ОСНОВНО СЪДЪРЖАНИЕ (SPLIT LAYOUT) -->
+    <!-- LAYER 3: ОСНОВНО СЪДЪРЖАНИЕ (PHASE 4: ACTUAL CALENDAR & FORM) -->
     <main class="home-container">
         
-        <!-- ЛЯВА ЧАСТ: Визия, Текст и Лого -->
+        <!-- ЛЯВА ЧАСТ: Визия с изображение и текст -->
         <div class="hero-left">
-            <div class="hero-quote">
-                <p class="cursive-text">Красотата</p>
-                <p class="sub-text">започва с начина,<br>по който се чувстваш...</p>
-                <p class="signature">Еми <i class="far fa-heart"></i></p>
+            <div class="hero-image-container">
+                <img src="emi-fon.png" alt="EMY Studio Experience" class="hero-model-img">
+                
+                <div class="hero-quote">
+                    <p class="cursive-text">Красотата</p>
+                    <p class="sub-text">започва с начина,<br>по който се чувстваш...</p>
+                    <p class="signature">Еми <i class="far fa-heart"></i></p>
+                </div>
+                
+                <div class="hero-bottom-group">
+                    <div class="hero-logo-large">
+                        <h1>EMY</h1>
+                        <p>beauty studio experience</p>
+                    </div>
+                    
+                    <button class="btn-primary">
+                        <i class="far fa-calendar-alt"></i> ЗАПАЗИ ЧАС <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
-            
-            <div class="hero-logo-large">
-                <h1>EMY</h1>
-                <p>beauty studio experience</p>
-            </div>
-            
-            <button class="btn-primary">
-                <i class="far fa-calendar-alt"></i> ЗАПАЗИ ЧАС <i class="fas fa-chevron-right"></i>
-            </button>
         </div>
 
         <!-- ДЯСНА ЧАСТ: Интерактивен Хъб -->
         <div class="home-right">
             
-            <!-- БЛОК 1: Избери своя ден (Календар + Форма) -->
             <section class="booking-glass-panel">
                 <div class="booking-header">
                     <div class="title-wrap">
@@ -108,20 +109,75 @@
                 </div>
                 
                 <div class="booking-split">
-                    <!-- Лява половина: Календар -->
+                    <!-- ЛЯВА ПОЛОВИНА: Истински Календар -->
                     <div class="calendar-section">
-                        <div class="calendar-placeholder">
-                            <i class="far fa-calendar-alt"></i>
-                            <span>Място за календара</span>
+                        <div class="calendar-actual">
+                            <div class="calendar-nav">
+                                <i class="fas fa-chevron-left"></i>
+                                <span>Септември 2026</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="calendar-weekdays">
+                                <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Нд</span>
+                            </div>
+                            <div class="calendar-days">
+                                <span class="dim">31</span>
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+                                <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+                                <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+                                <span class="has-dot">21</span><span class="has-dot">22</span><span class="has-dot">23</span><span class="has-dot">24</span><span class="selected has-dot">25</span><span>26</span><span>27</span>
+                                <span>28</span><span>29</span><span>30</span>
+                                <span class="dim">1</span><span class="dim">2</span><span class="dim">3</span><span class="dim">4</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Дясна половина: Данни за час -->
+                    <!-- ДЯСНА ПОЛОВИНА: Форма за час -->
                     <div class="form-section">
-                        <div class="form-placeholder">
-                            <i class="fas fa-list"></i>
-                            <span>Форма (Услуга, Час, Име)</span>
+                        <div class="booking-form">
+                            <div class="form-group">
+                                <label>Избери услуга</label>
+                                <div class="input-glass">
+                                    <i class="fas fa-leaf"></i>
+                                    <select>
+                                        <option>Маникюр</option>
+                                        <option>Педикюр</option>
+                                        <option>Грижа за лице</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down arrow-down"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Избери час</label>
+                                <div class="input-glass">
+                                    <i class="far fa-clock"></i>
+                                    <select>
+                                        <option>15:30</option>
+                                        <option>16:00</option>
+                                        <option>17:30</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down arrow-down"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Твоето име</label>
+                                <div class="input-glass">
+                                    <i class="far fa-user"></i>
+                                    <input type="text" placeholder="Въведи име">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Телефон</label>
+                                <div class="input-glass">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <input type="tel" placeholder="+359 8XX XXX XXX">
+                                </div>
+                            </div>
                         </div>
+                        
                         <button class="btn-gold">ЗАПАЗИ ЧАС <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
@@ -157,7 +213,6 @@
         </div>
     </main>
 
-    <!-- СКРИПТ ЗА ОТВАРЯНЕ И ЗАТВАРЯНЕ НА МЕНЮТО -->
     <script>
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const closeBtn = document.getElementById('close-btn');
