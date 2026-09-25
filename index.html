@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMY | Phase 2 Layout</title>
+    <title>EMY | Beauty Studio Experience</title>
     
+    <!-- FontAwesome за иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Всички CSS файлове -->
     <link rel="stylesheet" href="css/atmosphere.css">
     <link rel="stylesheet" href="css/glass.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/home.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,7 +23,6 @@
     <!-- LAYER 2: ГЛОБАЛНА НАВИГАЦИЯ (HEADER) -->
     <header class="emy-header">
         <div class="header-logo">
-            <!-- Добавено е ID на бутона, за да го намерим с JavaScript -->
             <div class="hamburger-menu" id="hamburger-btn">
                 <i class="fas fa-bars"></i>
             </div>
@@ -48,7 +52,7 @@
         </div>
     </header>
 
-    <!-- НОВО: МОБИЛНО МЕНЮ (СТЪКЛЕН ЕКРАН) -->
+    <!-- МОБИЛНО МЕНЮ (СТЪКЛЕН ЕКРАН) -->
     <div class="mobile-menu-overlay" id="mobile-menu">
         <div class="close-btn" id="close-btn"><i class="fas fa-times"></i></div>
         
@@ -69,11 +73,87 @@
         </div>
     </div>
 
-    <!-- LAYER 3: ОСНОВНО СЪДЪРЖАНИЕ -->
-    <main class="styleguide-container">
-        <div class="emy-glass">
-            <h1>EMY</h1>
-            <p>Phase 2: Global Layout Active</p>
+    <!-- LAYER 3: ОСНОВНО СЪДЪРЖАНИЕ (SPLIT LAYOUT) -->
+    <main class="home-container">
+        
+        <!-- ЛЯВА ЧАСТ: Визия, Текст и Лого -->
+        <div class="hero-left">
+            <div class="hero-quote">
+                <p class="cursive-text">Красотата</p>
+                <p class="sub-text">започва с начина,<br>по който се чувстваш...</p>
+                <p class="signature">Еми <i class="far fa-heart"></i></p>
+            </div>
+            
+            <div class="hero-logo-large">
+                <h1>EMY</h1>
+                <p>beauty studio experience</p>
+            </div>
+            
+            <button class="btn-primary">
+                <i class="far fa-calendar-alt"></i> ЗАПАЗИ ЧАС <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- ДЯСНА ЧАСТ: Интерактивен Хъб -->
+        <div class="home-right">
+            
+            <!-- БЛОК 1: Избери своя ден (Календар + Форма) -->
+            <section class="booking-glass-panel">
+                <div class="booking-header">
+                    <div class="title-wrap">
+                        <h2>Избери своя ден</h2>
+                        <p>и се погрижи за себе си</p>
+                    </div>
+                    <div class="heart-signature">It's your time <i class="far fa-heart"></i></div>
+                </div>
+                
+                <div class="booking-split">
+                    <!-- Лява половина: Календар -->
+                    <div class="calendar-section">
+                        <div class="calendar-placeholder">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Място за календара</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Дясна половина: Данни за час -->
+                    <div class="form-section">
+                        <div class="form-placeholder">
+                            <i class="fas fa-list"></i>
+                            <span>Форма (Услуга, Час, Име)</span>
+                        </div>
+                        <button class="btn-gold">ЗАПАЗИ ЧАС <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- БЛОК 2: EMY Предлага (Услуги) -->
+            <section class="services-section">
+                <div class="services-header">
+                    <h3>EMY предлага</h3>
+                    <a href="#">Виж всички <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="card-bg"></div>
+                        <span>Маникюр</span>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-bg"></div>
+                        <span>Педикюр</span>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-bg"></div>
+                        <span>Комбинирани</span>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-bg"></div>
+                        <span>Грижа за лице</span>
+                    </div>
+                </div>
+            </section>
+
         </div>
     </main>
 
@@ -83,12 +163,10 @@
         const closeBtn = document.getElementById('close-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        // При клик на хамбургера добавяме клас 'active'
         hamburgerBtn.addEventListener('click', () => {
             mobileMenu.classList.add('active');
         });
 
-        // При клик на хикса премахваме клас 'active'
         closeBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
         });

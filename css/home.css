@@ -1,0 +1,261 @@
+/* =========================================
+   PHASE 3: HOME / SPLIT LAYOUT (COMPACT)
+========================================= */
+.home-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    padding: 100px 5% 40px 5%; /* Намалени отстояния горе и долу */
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    gap: 30px; /* Намалено разстояние между ляво и дясно */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* =========================================
+   ЛЯВА ЧАСТ (ТЕКСТ И ЛОГО)
+========================================= */
+.hero-left {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Намален gap */
+    color: #fff;
+    padding-bottom: 10px;
+}
+
+.hero-quote .cursive-text {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 2.2rem; /* Смален шрифт */
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: -5px;
+}
+
+.hero-quote .sub-text {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-quote .signature {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 1.6rem;
+    margin-top: 5px;
+}
+
+.hero-logo-large h1 {
+    font-size: 3.2rem; /* Смалено лого */
+    font-weight: 300;
+    letter-spacing: 10px;
+    line-height: 1;
+}
+
+.hero-logo-large p {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #ffd700;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.btn-primary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 12px 25px; /* По-малък бутон */
+    border-radius: 30px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    border-color: #ffd700;
+    color: #ffd700;
+}
+
+/* =========================================
+   ДЯСНА ЧАСТ (ИНТЕРАКТИВЕН ХЪБ)
+========================================= */
+.home-right {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* По-прибрани секции */
+}
+
+/* СТЪКЛЕН ПАНЕЛ РЕЗЕРВАЦИИ */
+.booking-glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px; /* По-малък радиус */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    padding: 25px; /* Смален вътрешен padding */
+    color: #fff;
+}
+
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.booking-header h2 {
+    font-size: 1.8rem; /* По-малко заглавие */
+    font-weight: 400;
+}
+
+.booking-header p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.heart-signature {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.booking-split {
+    display: flex;
+    gap: 20px;
+}
+
+.calendar-section {
+    flex: 1.5;
+}
+
+.form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.calendar-placeholder, .form-placeholder {
+    width: 100%;
+    height: 240px; /* Намалена височина на календара */
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, #ffd700, #daa520);
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    color: #000;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.btn-gold:hover {
+    transform: scale(1.02);
+}
+
+/* СЕКЦИЯ УСЛУГИ */
+.services-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 0 10px;
+}
+
+.services-header h3 {
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+.services-header a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.service-card {
+    height: 100px; /* По-ниски карти */
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffd700;
+}
+
+/* =========================================
+   МОБИЛНА ВЕРСИЯ
+========================================= */
+@media (max-width: 1024px) {
+    .home-container {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+    }
+    
+    .hero-left, .home-right {
+        width: 100%;
+    }
+    
+    .booking-split {
+        flex-direction: column;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

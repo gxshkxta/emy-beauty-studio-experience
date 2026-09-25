@@ -3,7 +3,8 @@
 body, html { 
     width: 100%; 
     height: 100%; 
-    overflow: hidden; 
+    overflow-x: hidden; /* Скрива само хоризонталния скрол */
+    overflow-y: auto;   /* ОТКЛЮЧВА плъзгането надолу */
     background-color: #1a0822;
 }
 
