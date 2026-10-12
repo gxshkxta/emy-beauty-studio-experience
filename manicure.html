@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMY | Резервация Маникюр</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Твоите основни стилове -->
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/glass.css">
+    <link rel="stylesheet" href="css/home.css">
+    
+    <style>
+        /* Фулскрийн лайаут: Хедър горе, Календар в средата, Фуутър долу (без скрол) */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: #1a0822; 
+            font-family: 'Poppins', sans-serif; 
+            color: #fff; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden; 
+        }
+        
+        .bg-img { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            z-index: -1; 
+            filter: brightness(0.85); 
+        }
+        
+        /* Обвивка за центриране на календара в свободното пространство */
+        .calendar-wrapper {
+            flex: 1; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .large-calendar-container { 
+            width: 100%;
+            max-width: 700px; 
+            padding: 25px 35px; 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-top: 1px solid rgba(255, 215, 0, 0.3); 
+            border-radius: 25px; 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); 
+            text-align: center; 
+        }
+        
+        .service-title { font-size: 1.8rem; font-weight: 300; letter-spacing: 3px; margin: 0 0 5px 0; }
+        .service-title span { color: #ffd700; font-weight: 500; }
+        
+        .month-header { display: flex; justify-content: space-between; align-items: center; margin: 12px 0; font-size: 1.2rem; }
+        .month-header i { cursor: pointer; padding: 8px; transition: color 0.3s; }
+        .month-header i:hover { color: #ffd700; }
+        
+        .grid-calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+        .grid-day-name { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 4px; text-transform: uppercase; }
+        
+        /* Плаващите бутони (дати) */
+        .grid-date { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .grid-date:hover:not(.empty) { transform: translateY(-4px) scale(1.05); background: rgba(255, 215, 0, 0.15); border-color: #ffd700; color: #ffd700; box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2); z-index: 10; }
+        .grid-date.empty { background: transparent; border: none; box-shadow: none; cursor: default; }
+
+        /* Поп-ъп модал за резервация */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 9999; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-box { width: 90%; max-width: 380px; background: rgba(30, 10, 40, 0.85); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 20px; padding: 25px; text-align: center; transform: scale(0.9); transition: transform 0.3s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.6); position: relative; }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+        .close-modal { position: absolute; top: 12px; right: 18px; font-size: 1.4rem; cursor: pointer; transition: color 0.3s; }
+        .close-modal:hover { color: #ffd700; }
+        
+        .modal-input { width: 100%; box-sizing: border-box; padding: 10px 12px; margin: 8px 0; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: #fff; font-family: 'Poppins', sans-serif; outline: none; transition: border-color 0.3s; }
+        .modal-input:focus { border-color: #ffd700; }
+        .modal-btn { width: 100%; padding: 10px; margin-top: 12px; background: linear-gradient(135deg, #ffd700, #daa520); border: none; border-radius: 10px; color: #000; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: transform 0.2s; }
+        .modal-btn:hover { transform: scale(1.03); }
+
+        /* Стил за стъкленото падащо меню в хедъра */
+        .nav-dropdown { position: relative; display: flex; align-items: center; }
+        .dropdown-content { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(15px); opacity: 0; visibility: hidden; background: rgba(20, 5, 25, 0.75); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-top: 1px solid rgba(255, 215, 0, 0.4); border-radius: 14px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); padding: 8px; display: flex; flex-direction: column; gap: 4px; min-width: 150px; z-index: 1500; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-dropdown:hover .dropdown-content { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(5px); }
+        .dropdown-content a { padding: 10px 14px !important; border-radius: 8px; background: rgba(255, 255, 255, 0.02); text-decoration: none; color: #fff; font-size: 0.9rem; transition: all 0.3s ease !important; display: block; }
+        .dropdown-content a:hover { background: rgba(255, 215, 0, 0.15) !important; color: #ffd700 !important; }
+    </style>
+</head>
+<body>
+    <img src="emy-bg.png" class="bg-img" alt="Background">
+
+    <!-- ОРИГИНАЛЕН ХЕДЪР С ПАДАЩОТО МЕНЮ -->
+    <header class="emy-header" style="padding: 15px 40px; display: flex; justify-content: space-between; align-items: center;">
+        <div class="logo-area" style="display: flex; align-items: center; gap: 10px;">
+            <a href="index.html" style="text-decoration: none; color: #fff; font-size: 1.5rem; font-weight: 600; letter-spacing: 2px;">EMY</a>
+        </div>
+        <nav class="header-nav" style="display: flex; gap: 25px; align-items: center;">
+            <a href="index.html" style="text-decoration: none; color: #fff; font-size: 0.95rem;"><i class="fas fa-leaf"></i> Studio</a>
+            <a href="index.html" style="text-decoration: none; color: #fff; font-size: 0.95rem;"><i class="fas fa-shopping-bag"></i> EMY Care</a>
+            <a href="index.html" style="text-decoration: none; color: #fff; font-size: 0.95rem;"><i class="fas fa-graduation-cap"></i> EMY Academy</a>
+            
+            <!-- Падащо меню за Календар -->
+            <div class="nav-dropdown">
+                <a href="#" style="text-decoration: none; color: #ffd700; font-size: 0.95rem; cursor: default;"><i class="far fa-calendar-alt"></i> Calendar <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <div class="dropdown-content">
+                    <a href="manicure.html">Маникюр</a>
+                    <a href="pedicure.html">Педикюр</a>
+                    <a href="lashes.html">Мигли</a>
+                    <a href="makeup.html">Грим</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- КАЛЕНДАР НА ЦЯЛ ЕКРАН В СРЕДАТА -->
+    <main class="calendar-wrapper">
+        <div class="large-calendar-container">
+            <h1 class="service-title">Резервация: <span>Маникюр</span></h1>
+            <p style="color: rgba(255,255,255,0.7); margin: 0 0 10px 0; font-size: 0.85rem;">Избери дата от календара</p>
+
+            <div class="month-header">
+                <i class="fas fa-chevron-left" onclick="changeMonth(-1)"></i>
+                <span id="currentMonthLabel">Октомври 2026</span>
+                <i class="fas fa-chevron-right" onclick="changeMonth(1)"></i>
+            </div>
+
+            <div class="grid-calendar">
+                <div class="grid-day-name">Пн</div><div class="grid-day-name">Вт</div><div class="grid-day-name">Ср</div>
+                <div class="grid-day-name">Чт</div><div class="grid-day-name">Пт</div><div class="grid-day-name">Сб</div><div class="grid-day-name">Нд</div>
+                
+                <div id="daysContainer" style="display: contents;"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ОРИГИНАЛЕН ФУУТЪР -->
+    <footer class="emy-footer" style="padding: 15px 40px; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+        <p>&copy; 2026 EMY Beauty Studio Experience. Всички права запазени.</p>
+    </footer>
+
+    <!-- ПОП-ЪП ПРОЗОРЕЦ ЗА РЕЗЕРВАЦИЯ -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-box">
+            <i class="fas fa-times close-modal" onclick="closeModal()"></i>
+            <h2 style="font-weight: 400; margin-bottom: 5px; font-size: 1.3rem;">Запази час</h2>
+            <p id="modalDateDisplay" style="color: #ffd700; margin-bottom: 15px; font-size: 0.95rem;"></p>
+            
+            <select class="modal-input" id="timeSelect">
+                <option value="10:00">10:00 ч.</option>
+                <option value="13:30">13:30 ч.</option>
+                <option value="16:00">16:00 ч.</option>
+            </select>
+            <input type="text" class="modal-input" placeholder="Твоето име" id="clientName">
+            <input type="tel" class="modal-input" placeholder="Телефонен номер" id="clientPhone">
+            
+            <button class="modal-btn" onclick="submitBooking()">ПОТВЪРДИ ЧАСА</button>
+        </div>
+    </div>
+
+    <!-- СКРИПТ ЗА КАЛЕНДАРА И МОДАЛА -->
+    <script>
+        const daysContainer = document.getElementById('daysContainer');
+        const modal = document.getElementById('bookingModal');
+        const modalDateDisplay = document.getElementById('modalDateDisplay');
+        let selectedFullDate = "";
+
+        function renderDays() {
+            daysContainer.innerHTML = '';
+            // Празни полета за отстъп в началото на месеца
+            for(let i = 0; i < 2; i++) {
+                daysContainer.innerHTML += `<div class="grid-date empty"></div>`;
+            }
+            // Дати от 1 до 31
+            for(let d = 1; d <= 31; d++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'grid-date';
+                dayEl.innerText = d;
+                dayEl.onclick = () => openModal(d);
+                daysContainer.appendChild(dayEl);
+            }
+        }
+
+        function openModal(day) {
+            const monthText = document.getElementById('currentMonthLabel').innerText;
+            selectedFullDate = `${day} ${monthText}`;
+            modalDateDisplay.innerText = selectedFullDate;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        function submitBooking() {
+            const name = document.getElementById('clientName').value;
+            if(!name) {
+                alert("Моля, въведете вашето име!");
+                return;
+            }
+            alert(`Успешно запазен час за Маникюр на ${selectedFullDate}!`);
+            closeModal();
+        }
+
+        function changeMonth(direction) {
+            // Тук може да се надгради смяната на месеците при нужда
+        }
+
+        renderDays();
+    </script>
+</body>
+</html>
