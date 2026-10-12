@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/home.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Този скрипт не е задължителен, ако ползваш Formspree, но не пречи да стои -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
@@ -38,18 +39,19 @@
             <a href="#"><i class="far fa-calendar-alt"></i> Calendar</a>
         </nav>
 
-        <div class="header-actions">
-            <a href="#" class="my-emy"><i class="far fa-user"></i> My EMY <i class="fas fa-chevron-down arrow"></i></a>
+       <div class="header-actions">
+            <a href="#" class="my-emy"><i class="far fa-user"></i> EMYbox <i class="fas fa-chevron-down arrow"></i></a>
             <div class="separator"></div>
             <div class="socials">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="https://facebook.com/ТВОЯТ_FACEBOOK_ЛИК" target="_blank" data-social="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com/ТВОЯТ_INSTAGRAM_ЛИК" target="_blank" data-social="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@ТВОЯТ_TIKTOK_ЛИК" target="_blank" data-social="tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="tel:+35988XXXXXXX" data-social="phone"><i class="fas fa-phone-alt"></i></a>
+                <a href="https://wa.me/35988XXXXXXX" target="_blank" data-social="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="cart-icon" data-social="shop"><i class="fas fa-shopping-cart"></i></a>
             </div>
         </div>
-    </header>
+    </header> <!-- ТУК ВЕЧЕ Е ПРАВИЛНО ЗАТВОРЕН ХЕДЪРЪТ -->
 
     <!-- МОБИЛНО МЕНЮ -->
     <div class="mobile-menu-overlay" id="mobile-menu">
@@ -59,21 +61,22 @@
             <a href="#"><i class="fas fa-shopping-bag"></i> EMY Care</a>
             <a href="#"><i class="fas fa-graduation-cap"></i> EMY Academy</a>
             <a href="#"><i class="far fa-calendar-alt"></i> Calendar</a>
-            <a href="#" class="my-emy-mobile"><i class="far fa-user"></i> My EMY</a>
+            <a href="#" class="my-emy-mobile"><i class="far fa-user"></i> EMYbox</a>
         </nav>
         <div class="mobile-socials">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a href="https://facebook.com/ТВОЯТ_FACEBOOK_ЛИК" target="_blank" data-social="facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/ТВОЯТ_INSTAGRAM_ЛИК" target="_blank" data-social="instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@ТВОЯТ_TIKTOK_ЛИК" target="_blank" data-social="tiktok"><i class="fab fa-tiktok"></i></a>
+            <a href="tel:+35988XXXXXXX" data-social="phone"><i class="fas fa-phone-alt"></i></a>
+            <a href="https://wa.me/35988XXXXXXX" target="_blank" data-social="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="cart-icon-mobile" data-social="shop"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
 
     <!-- LAYER 3: ОСНОВНО СЪДЪРЖАНИЕ (PHASE 4: ACTUAL CALENDAR & FORM) -->
     <main class="home-container">
         
-        <!-- ЛЯВА ЧАСТ: Визия с изображение и текст -->
+       <!-- ЛЯВА ЧАСТ: Визия с изображение и текст -->
         <div class="hero-left">
             <div class="hero-image-container">
                 <img src="emy-fon.png" alt="EMY Studio Experience" class="hero-model-img">
@@ -177,7 +180,18 @@
                                     <input type="tel" placeholder="+359 8XX XXX XXX">
                                 </div>
                             </div>
-                        </div>
+                        </div><!-- Кристален таб за съгласие с Общите условия -->
+<div class="form-group" style="margin-top: 15px;">
+    <div class="glass-terms-container" style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.03); padding: 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+        <input type="checkbox" id="accept-terms" required style="margin-top: 3px; accent-color: var(--primary-gold); cursor: pointer; width: 18px; height: 18px;">
+        <label for="accept-terms" style="font-size: 0.75rem; color: var(--text-main); line-height: 1.4; cursor: pointer;">
+    Запознат/а съм и приемам 
+    <a href="terms.html" target="_blank" style="color: var(--primary-gold); text-decoration: underline;">Общите условия</a>, 
+    <a href="rules.html" target="_blank" style="color: var(--primary-gold); text-decoration: underline;">Правилата</a> и 
+    <a href="privacy.html" target="_blank" style="color: var(--primary-gold); text-decoration: underline;">Политиката за поверителност</a>.
+</label>
+    </div>
+</div>
                         
                         <button class="btn-gold">ЗАПАЗИ ЧАС <i class="fas fa-chevron-right"></i></button>
                     </div>
@@ -228,8 +242,44 @@
             mobileMenu.classList.remove('active');
         });
     </script>
+    
 
     <!-- СКРИПТ ЗА ИНТЕРАКТИВЕН КАЛЕНДАР И BOOKING FLOW -->
     <script src="js/booking.js"></script>
+    <!-- Компактен фуутър -->
+     <!-- БЛОК 3: EMY GALLERY -->
+    <section class="gallery-section" style="width: 100%; max-width: 1600px; margin: 40px auto; position: relative; z-index: 10;">
+        <div class="booking-header" style="text-align: center; margin-bottom: 20px; border-bottom: none; display: flex; justify-content: center;">
+            <h2 style="font-size: 2.2rem; font-weight: 300; letter-spacing: 3px; color: #fff;">EMY <span style="font-weight: 500; color: #ffd700;">GALLERY</span></h2>
+        </div>
+        
+        <div class="gallery-wrapper" id="galleryWrap" style="position: relative; display: flex; align-items: center; width: 100%; padding: 0 50px; overflow: hidden;">
+            <!-- Бутон ЛЯВО -->
+            <button class="gallery-arrow left-arrow" onclick="scrollGalleryLeft()">&#8249;</button>
+            
+            <div class="gallery-slider" style="overflow: hidden; width: 100%; padding: 25px 0;">
+                <div class="gallery-track" id="galleryTrack">
+                    <!-- Снимките ще се заредят тук от JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Бутон ДЯСНО -->
+            <button class="gallery-arrow right-arrow" onclick="scrollGalleryRight()">&#8250;</button>
+        </div>
+    </section>
+    
+<footer style="margin-top: 20px; padding: 10px 15px; background: rgba(13, 4, 17, 0.6); backdrop-filter: blur(10px); border-top: 1px solid rgba(255, 255, 255, 0.08); text-align: center; font-size: 0.7rem; color: rgba(255, 255, 255, 0.6); width: 100%;">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <span>EMY Beauty Experience &copy; 2026</span>
+        <span style="color: rgba(255,255,255,0.2);">•</span>
+        <a href="terms.html" target="_blank" style="color: var(--primary-gold); text-decoration: none;">Общи условия</a>
+        <span style="color: rgba(255,255,255,0.2);">•</span>
+        <a href="rules.html" target="_blank" style="color: var(--primary-gold); text-decoration: none;">Правила</a>
+        <span style="color: rgba(255,255,255,0.2);">•</span>
+        <a href="privacy.html" target="_blank" style="color: var(--primary-gold); text-decoration: none;">Поверителност</a>
+        <span style="color: rgba(255,255,255,0.2);">•</span>
+        <span><i class="fas fa-envelope" style="color: var(--primary-gold);"></i> emyxp@abv.bg</span>
+    </div>
+</footer>
 </body>
 </html>

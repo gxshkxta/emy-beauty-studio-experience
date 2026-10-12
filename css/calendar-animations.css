@@ -1,0 +1,74 @@
+/* Влизане на целия календар (Entrance Animation) */
+.calendar-premium-entrance {
+    /* Слиза леко надолу от -25px до 0, само с transform и opacity */
+    animation: descendEntrance 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0;
+    transform: translateY(-25px);
+}
+
+@keyframes descendEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Кристален ефект за самите клетки (Shimmer) */
+.crystal-cell-wrapper {
+    /* Подсигуряваме, че ефектът не излиза извън границите на клетката */
+    position: relative;
+    overflow: hidden; 
+}
+
+/* Създаваме светлинния отблясък с псевдо-елемент, без да пипаме числата */
+.crystal-shimmer-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* Фин градиент симулиращ пречупване на светлина през диамант/стъкло */
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.02) 40%,
+        rgba(255, 255, 255, 0.12) 50%,
+        rgba(255, 255, 255, 0.02) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg) translate(-100%, -100%);
+    pointer-events: none; /* Задължително, за да не блокира кликовете върху датите */
+    z-index: 1; 
+    animation: crystalShimmerPass 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Числата остават над светлината (ако случайно нямат вече z-index) */
+.calendar-date-cell > span, 
+.calendar-date-cell > div {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes crystalShimmerPass {
+    0% { transform: rotate(30deg) translate(-100%, -100%); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: rotate(30deg) translate(100%, 100%); opacity: 0; }
+}
+
+/* Изключване на анимациите при намалено движение */
+@media (prefers-reduced-motion: reduce) {
+    .calendar-premium-entrance {
+        animation: none;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .crystal-shimmer-effect::before {
+        display: none;
+    }
+}
